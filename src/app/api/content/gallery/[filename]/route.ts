@@ -4,11 +4,12 @@ import path from 'path';
 
 export async function GET(
   request: Request,
-  { params }: { params: { filename: string } }
+  { params }: { params: Promise<{ filename: string }> }
 ) {
   try {
     // Decode URL-encoded filename
-    const filename = decodeURIComponent(params.filename);
+    const { filename: encoded } = await params;
+    const filename = decodeURIComponent(encoded);
     const filePath = path.join(process.cwd(), 'content', 'gallery', filename);
     
     // Check if file exists and is an image (including RAW formats)

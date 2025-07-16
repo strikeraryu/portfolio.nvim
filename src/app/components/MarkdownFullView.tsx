@@ -7,9 +7,11 @@ import PageHeader from '../../components/PageHeader';
 import { useFilteredKeyDown } from './utils';
 import { useMenuItem } from './MenuItemContext';
 
-// Dynamically load react-markdown so it is split into its own chunk and
-// downloaded only on pages that actually render full markdown files.
-const ReactMarkdown = dynamic(() => import('react-markdown'));
+// Dynamically import react-markdown (cast to any to avoid complex generic types)
+const ReactMarkdown: any = dynamic(() => import('react-markdown').then((m) => m.default as any), {
+  // `react-markdown` should only render on the client
+  ssr: false,
+});
 
 interface Props {
   markdown: string;
