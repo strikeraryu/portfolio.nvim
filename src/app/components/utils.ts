@@ -16,5 +16,5 @@ export function useFilteredKeyDown(handler: (e: KeyboardEvent) => void, deps: an
     };
     window.addEventListener('keydown', wrapped);
     return () => window.removeEventListener('keydown', wrapped);
-  }, deps); // eslint-disable-line react-hooks/exhaustive-deps
+  }, deps);
 } 
