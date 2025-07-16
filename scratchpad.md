@@ -1,0 +1,35 @@
+TODO:
+- [x] Error for photography page
+- [x] menu bar is not cenetred
+- [x] white flash on releoad
+- [x] Logos on home page is weird
+- [x] Projects page
+    - [x] 2 Column Pinned section
+    - [x] Get data from the pinned section properly
+    - [x] search bar is not proper
+    - [x] On hover is should show project name in the menu bar
+    - [x] current project get removed after tab switch
+- [x] Blog/Notes Page
+    - [x] Dont need to mention the BLOGS in the left sectoin
+    - [x] Dont need to mentoin the file name on the right side
+    - [x] Do subititle in second line it to long there truncate
+    - [x] Mention the shortcuts properly and there usage
+    - [x] when is search bar and there is some search text, tell that ESC on the right side (so use no it can be used to exit focus)
+    - [x] The current highlighted file should be the curent item in the menu bar
+    - [x] J/K should not scroll when it is navigation the blogs/notes
+    - [x] Deboucing for preview
+    - [x] fix the error in blog page
+    - [x] The preview is weird, it should render the markdown properly
+    - [x] blog content is also broken, no proper markdown
+    - [x] Preview page better
+    - [x] Blog page better
+    - [x] D/U should scroll the preview and should not scroll the page, Mention the shorcut at bottom also
+- [x] Links page
+
+
+- [ ] Responsive for different screen size
+    - [ ] menu in menu bar
+    - [ ] menu bar in phone
+- [ ] THing are not working preperly on mobile scrolls and stuff
+- [x] Other shortcuts also stop working like cmd+l
+- [ ] Add favion for a thunder logo and striker

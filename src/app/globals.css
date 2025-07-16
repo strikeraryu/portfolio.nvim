@@ -1,26 +1,1192 @@
 @import "tailwindcss";
 
+
+/* Terminal/Retro CRT Theme Variables - Set dynamically from config.json */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Fonts will be set dynamically from config.json theme */
+  --font-primary: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  --font-secondary: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  padding: 0;
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-primary);
+  font-size: 14px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  /* Better mobile experience */
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* CRT Screen Effect */
+.crt-screen {
+  position: relative;
+  background: var(--bg-primary);
+  min-height: 100vh;
+  /* Improve mobile scrolling */
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Terminal-style cursor */
+.cursor {
+  display: inline-block;
+  background-color: var(--cursor-color);
+  width: 2px;
+  height: 1.2em;
+  margin-left: 2px;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* Selection styling */
+::selection {
+  background-color: var(--selection-bg);
+  color: var(--text-primary);
+}
+
+/* Scrollbar styling - Hidden */
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: transparent;
+}
+
+/* ASCII Art styling */
+.ascii-art {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 1.1;
+  color: var(--text-accent);
+  white-space: pre;
+  text-align: left;
+  padding-left: 10vw;
+  margin: 1rem 0 2rem 0;
+  text-shadow: 0 0 10px var(--glow-color);
+}
+
+/* Home page specific styling */
+.home-ascii-art {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.3;
+  color: var(--text-accent);
+  white-space: pre;
+  text-align: center;
+  margin: 2rem 0 3rem 0;
+  text-shadow: 0 0 8px var(--glow-color);
+}
+
+/* About page logo styling */
+.about-logo-art {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 1.1;
+  white-space: pre;
+  text-align: left;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  text-shadow: 0 0 5px rgba(145, 179, 98, 0.3);
+  overflow: hidden;
+  word-wrap: break-word;
+  max-width: 55%;
+  display: inline-block;
+}
+
+/* Vim Alpha style overrides */
+.vim-alpha-menu {
+  font-family: var(--font-primary);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.vim-alpha-menu .menu-item {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0.3rem 0;
+  margin: 0.05rem 0;
+  transition: all 0.15s ease;
+  border-left: 4px solid transparent;
+  cursor: pointer;
+  /* Improved touch targets */
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.vim-alpha-menu .menu-item.selected {
+  background-color: var(--bg-secondary);
+  border-left-color: var(--text-accent);
+}
+
+.vim-alpha-menu .menu-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  width: 100%;
+}
+
+.vim-alpha-menu .menu-icon {
+  font-size: 14px;
+  margin-right: 0.75rem;
+  width: 20px;
+  text-align: center;
+  color: var(--text-primary);
+}
+
+.vim-alpha-menu .menu-text {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.vim-alpha-menu .menu-arrow {
+  color: var(--text-secondary);
+  font-weight: normal;
+}
+
+.vim-alpha-menu .menu-title {
+  color: var(--text-primary);
+  font-weight: normal;
+  font-size: 13px;
+}
+
+.vim-alpha-menu .menu-shortcut {
+  color: var(--text-warning);
+  font-size: 12px;
+  font-weight: normal;
+  min-width: 20px;
+  text-align: right;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin-left: auto;
+}
+
+/* Menu styling */
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  margin: 0.25rem 0;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: var(--font-primary);
+}
+
+/* Remove hover styling - selection handled by selectedIndex state */
+.menu-item.active {
+  background-color: var(--bg-secondary);
+  border-color: var(--text-accent);
+  color: var(--text-accent);
+}
+
+.menu-shortcut {
+  background-color: var(--bg-secondary);
+  color: var(--text-accent);
+  padding: 0.25rem 0.5rem;
+  border-radius: 3px;
+  font-size: 12px;
+  margin-left: auto;
+  border: 1px solid var(--border-color);
+}
+
+/* Page content styling */
+.page-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  padding-bottom: 5rem;
+}
+
+/* Page Header styling */
+.page-header {
+  padding: 2rem 0 1rem 0;
+}
+
+.page-header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  border-bottom: 1px solid var(--border-color);
+  margin-top: 0.5rem;
+}
+
+.page-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+  font-family: var(--font-primary);
+}
+
+.page-subtitle {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  font-family: var(--font-primary);
+}
+
+.page-divider {
+  width: 100%;
+  height: 1px;
+  background-color: var(--border-color);
+  margin: 1rem 0 0 0;
+}
+
+/* Header styling - legacy (keep for backward compatibility) */
+.page-header.centered {
+  text-align: center;
+  margin-bottom: 3rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 2rem;
+}
+
+.page-header.centered .page-title {
+  color: var(--text-accent);
+  margin-bottom: 1rem;
+}
+
+/* Card styling */
+.card {
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  transition: all 0.2s ease;
+}
+
+.card:hover {
+  border-color: var(--text-accent);
+}
+
+/* Status Line - Terminal Style */
+.status-line {
+  position: fixed;
+  bottom: 24px;
+  left: 0;
+  right: 0;
+  background-color: var(--bg-secondary);
+  padding: 0.25rem 0.5rem;
+  font-size: 11px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-primary);
+  color: var(--text-primary);
+  height: 24px;
+}
+
+.status-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.status-entity {
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.status-page-name {
+  color: var(--text-primary);
+  padding: 0.125rem 0.5rem;
+  border-radius: 2px;
+  font-weight: bold;
+  font-size: 10px;
+  opacity: 0.8;
+  min-width: 4rem;
+  text-align: center;
+}
+
+.status-info {
+  color: var(--text-secondary);
+  font-size: 10px;
+}
+
+.status-center {
+  /* Center the navigation within the bar */
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  /* Absolutely center it so left/right sections don't affect centering */
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.status-nav {
+  display: flex;
+  gap: 0.25rem;
+  flex-wrap: nowrap;
+  justify-content: center;
+  overflow-x: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+
+.status-nav::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+.status-nav-item {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  padding: 0.125rem 0.375rem;
+  font-size: 10px;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.15s ease;
+  font-family: var(--font-primary);
+}
+
+.status-nav-item:hover {
+  background-color: var(--selection-bg);
+  color: var(--text-primary);
+}
+
+.status-nav-item.active {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+.status-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.status-time {
+  color: var(--text-secondary);
+  font-size: 10px;
+}
+
+.status-current-time {
+  color: var(--text-primary);
+  font-weight: bold;
+  font-size: 10px;
+}
+
+.status-battery {
+  color: var(--text-success);
+  font-size: 10px;
+}
+
+.status-time-display {
+  color: var(--text-info);
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.pinned-repos {
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.all-repos {
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+/* Terminal Prompt Line */
+.terminal-prompt {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--bg-primary);
+  padding: 0.25rem 0.5rem;
+  font-size: 11px;
+  font-family: var(--font-mono);
+  color: var(--text-primary);
+  border-top: 1px solid var(--border-color);
+  z-index: 1000;
+  height: 24px;
+  display: flex;
+  align-items: center;
+}
+
+.prompt-text {
+  color: var(--text-accent);
+  font-weight: bold;
+}
+
+.prompt-text::after {
+  content: ' $ ';
+  color: var(--text-primary);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .page-content {
+    padding: 1rem;
+    padding-bottom: 4rem;
+  }
+  
+  .page-header-container {
+    padding: 0 1rem;
+  }
+  
+  .page-title {
+    font-size: 1.5rem;
+  }
+  
+  .page-subtitle {
+    font-size: 1rem;
+  }
+  
+  .ascii-art {
+    font-size: 10px;
+    line-height: 1.2;
+  }
+  
+  .home-ascii-art {
+    font-size: 10px;
+    line-height: 1.2;
+    margin: 1rem 0 2rem 0;
+  }
+
+  .about-logo-art {
+    font-size: 11px;
+    line-height: 1.0;
+    margin: 0 auto;
+    padding: 1.5rem 0.5rem;
+    max-width: 100%;
+    overflow: hidden;
+    display: inline-block;
+  }
+  
+  .vim-alpha-menu {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  
+  .vim-alpha-menu .menu-item {
+    padding: 0.5rem 0;
+    margin: 0.05rem 0;
+    border-left: 3px solid transparent;
+    transition: all 0.15s ease;
+  }
+  
+  .vim-alpha-menu .menu-item.selected {
+    background-color: var(--bg-secondary);
+    border-left-color: var(--text-accent);
+  }
+  
+  .vim-alpha-menu .menu-content {
+    padding: 0 1rem;
+    width: 100%;
+  }
+  
+  .vim-alpha-menu .menu-icon {
+    font-size: 14px;
+    margin-right: 0.75rem;
+    width: 18px;
+  }
+  
+  .vim-alpha-menu .menu-title {
+    font-size: 13px;
+  }
+  
+  .vim-alpha-menu .menu-shortcut {
+    font-size: 12px;
+    min-width: 18px;
+  }
+  
+  .menu-item {
+    padding: 0.5rem 0;
+    margin: 0.25rem 0;
+  }
+  
+  .status-line {
+    font-size: 10px;
+    padding: 0.25rem 0.5rem;
+    height: 22px;
+    bottom: 22px;
+  }
+  
+  .terminal-prompt {
+    font-size: 10px;
+    padding: 0.25rem 0.5rem;
+    height: 22px;
+  }
+  
+  .status-nav {
+    gap: 0.25rem;
+  }
+  
+  .status-nav-item {
+    padding: 0.125rem 0.375rem;
+    font-size: 10px;
+  }
+  
+  .status-page-name {
+    font-size: 10px;
+    padding: 0.125rem 0.5rem;
+  }
+  
+  .status-right {
+    gap: 0.5rem;
+  }
+  
+  .status-time,
+  .status-current-time,
+  .status-battery,
+  .status-time-display {
+    font-size: 10px;
+  }
+  
+  .status-entity {
+    display: none; /* Hide on mobile to save space */
+  }
+  
+  .status-info {
+    display: none; /* Hide on mobile to save space */
+  }
+}
+
+/* Extra small devices (phones in portrait) */
+@media (max-width: 480px) {
+  .home-ascii-art {
+    font-size: 8px;
+    line-height: 1.1;
+    margin: 0.5rem 0 1.5rem 0;
+  }
+
+  .about-logo-art {
+    font-size: 9px;
+    line-height: 0.9;
+    margin: 0 auto;
+    padding: 1rem 0.5rem;
+    max-width: 100%;
+    overflow: hidden;
+    display: inline-block;
+  }
+  
+  .vim-alpha-menu .menu-item {
+    padding: 0.3rem 0;
+    margin: 0.05rem 0;
+    min-height: 48px; /* Larger touch targets on mobile */
+  }
+  
+  .vim-alpha-menu .menu-content {
+    padding: 0 0.75rem;
+  }
+  
+  .vim-alpha-menu .menu-icon {
+    font-size: 12px;
+    margin-right: 0.5rem;
+    width: 16px;
+  }
+  
+  .vim-alpha-menu .menu-title {
+    font-size: 11px;
+  }
+  
+  .vim-alpha-menu .menu-shortcut {
+    font-size: 11px;
+    min-width: 16px;
+  }
+  
+ 
+  .status-left {
+    order: 1;
+  }
+  
+  .status-center {
+    order: 2;
+    flex: none;
+    position: static; /* Reset absolute centering on small screens */
+    transform: none;
+    justify-content: center;
+  }
+  
+  .status-right {
+    order: 3;
+    gap: 0.25rem;
+  }
+  
+  .status-nav {
+    gap: 0.125rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .status-nav-item {
+    padding: 0.125rem 0.25rem;
+    font-size: 9px;
+  }
+  
+  .status-page-name {
+    font-size: 9px;
+    padding: 0.125rem 0.375rem;
+  }
+  
+  .status-line {
+    height: 20px;
+    bottom: 20px;
+  }
+
+  .terminal-prompt {
+    font-size: 9px;
+    padding: 0.125rem 0.25rem;
+    height: 20px;
+  }
+  
+  .status-time,
+  .status-current-time,
+  .status-battery,
+  .status-time-display {
+    font-size: 9px;
+  }
+  
+  /* Hide some status elements on very small screens */
+  .status-time {
+    display: none;
+  }
+}
+
+/* Mobile landscape */
+@media (max-width: 768px) and (orientation: landscape) {
+  .home-ascii-art {
+    font-size: 9px;
+    line-height: 1.05;
+    margin: 0.5rem 0 1rem 0;
+  }
+  
+  .vim-alpha-menu .menu-item {
+    padding: 0.25rem 0;
+    margin: 0.05rem 0;
+    min-height: 40px;
+  }
+  
+  .status-line {
+    font-size: 10px;
+    height: 20px;
+    bottom: 20px;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .status-left {
+    order: 1;
+  }
+  
+  .status-center {
+    order: 2;
+    flex: 1;
+  }
+  
+  .status-right {
+    order: 3;
+  }
+  
+  .terminal-prompt {
+    height: 20px;
+  }
+}
+
+/* Medium devices (tablets) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .vim-alpha-menu {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  
+  .vim-alpha-menu .menu-item {
+    padding: 0.4rem 0;
+    margin: 0.1rem 0;
+  }
+  
+  .vim-alpha-menu .menu-content {
+    padding: 0 1.25rem;
+  }
+  
+  .status-line {
+    font-size: 11px;
+    padding: 0.25rem 0.75rem;
+  }
+  
+  .terminal-prompt {
+    font-size: 11px;
+    padding: 0.25rem 0.75rem;
+  }
+}
+
+/* === Telescope UI === */
+.telescope-container {
+  display: flex;
+  height: calc(100vh - 32vh); /* fills viewport minus header & status */
+  overflow: hidden;
+}
+
+.telescope-left {
+  width: 40%;
+  border-right: 1px solid var(--border-color);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.telescope-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 0.75rem;
+  gap: 0.5rem;
+}
+
+.telescope-search {
+  width: 100%;
+  display: block;
+  /* Add extra left padding so text does not overlap the search icon (0.75rem icon + spacing) */
+  padding: 0.25rem 3rem 0.25rem 2rem; /* 2rem ≈ 32px matches pl-8 used in some components */
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  outline: none;
+  font-size: 0.875rem;
+  font-family: inherit;
+}
+
+.telescope-page-indicator {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.telescope-list {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+.telescope-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.telescope-item + .telescope-item {
+  margin-top: 0.25rem;
+}
+
+.telescope-item-selected {
+  border-left: 2px solid var(--text-accent);
+  color: var(--text-accent);
+}
+
+.telescope-item-date {
+  flex-shrink: 0;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.telescope-footer {
+  position: sticky;
+  background: var(--bg-primary);
+  padding-top: 0.25rem;
+  color: var(--text-secondary);
+}
+
+.telescope-preview-header {
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.25rem;
+  color: var(--text-primary);
+}
+
+.telescope-item-title {
+  font-size: 0.875rem;
+  color: var(--text-primary);
+}
+.telescope-item-sub {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.telescope-esc-hint {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+/* Telescope markdown typography */
+.telescope-markdown {
+  line-height: 1.5;
+  padding-left: 0.25rem;
+  margin-top: 0.5rem;
+}
+.telescope-markdown h1 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0.75rem 0 0.25rem 0;
+  color: var(--text-primary);
+}
+.telescope-markdown h2 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0.65rem 0 0.25rem 0;
+}
+.telescope-markdown h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0.5rem 0 0.25rem 0;
+}
+.telescope-markdown p,
+.telescope-markdown ul,
+.telescope-markdown ol,
+.telescope-markdown blockquote {
+  margin-bottom: 0.5rem;
+}
+.telescope-markdown ul {
+  padding-left: 1rem;
+  list-style: disc;
+}
+.telescope-markdown ol {
+  padding-left: 1rem;
+  list-style: decimal;
+}
+.telescope-right {
+  flex: 1;
+  border-left: 1px solid var(--border-color);
+  padding: 1rem 1.5rem;
+  overflow-y: auto;
+  max-width: 65ch;
+}
+
+.telescope-markdown code {
+  background-color: var(--bg-secondary);
+  padding: 0.1rem 0.35rem;
+  border-radius: 3px;
+  font-family: var(--font-mono);
+  color: var(--text-primary);
+}
+
+.telescope-markdown pre {
+  background-color: var(--bg-secondary);
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.telescope-markdown blockquote {
+  border-left: 2px solid var(--text-secondary);
+  padding-left: 0.75rem;
+  color: var(--text-secondary);
+  margin: 0.5rem 0;
+}
+
+.telescope-markdown hr {
+  border: none;
+  border-top: 1px solid var(--border-color);
+  margin: 1rem 0;
+}
+
+.telescope-markdown a {
+  color: var(--text-accent);
+  text-decoration: underline;
+}
+
+.telescope-search-wrapper {
+  position: relative;
+  flex: 1 1 auto;
+  display: block;
+}
+.telescope-search-shortcut {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.75rem;
+  color: var(--text-primary);
+  pointer-events: none;
+}
+
+.shortcut-bracket {
+  color: var(--text-secondary);
+}
+.shortcut-key {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* ---------------- Responsive additions ---------------- */
+@media (max-width: 768px) {
+  .telescope-container {
+    flex-direction: column;
+  }
+  .telescope-left,
+  .telescope-right {
+    width: 100% !important;
+    border: none !important;
+  }
+  .telescope-right {
+    max-width: none;
+    padding: 1rem;
+  }
+  .vim-alpha-menu .menu-item {
+    flex-direction: row;
+  }
+  .ascii-art,
+  .home-ascii-art,
+  .about-logo-art {
+    line-height: 1.1;
+  }
+  .page-content {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .flex-col-lg-row,
+  .flex.flex-row {
+    flex-direction: column !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .status-center {
+    display: flex;
+    justify-content: center;
+  }
+  .status-left span {
+    max-width: 140px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+  }
+  .telescope-footer {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+   .telescope-footer {
+    position: static;
+    margin-top: 0.5rem;
+  }
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
+/* about container helper */
+@media (max-width: 768px) {
+  .about-container {
+    flex-direction: column !important;
+    gap: 2rem !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .shortcut-hint{display:none;}
+  .pinned-repos{grid-template-columns:1fr !important;}
+  .all-repos .card{margin-bottom:1rem;}
+}
+
+.project-desc{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;}
+
+/* photo grid auto-fit */
+.photo-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+}
+
+@media(max-width:480px){
+  .page-content{
+    padding-left:0.75rem;
+    padding-right:0.75rem;
+  }
+  .photo-grid{
+    grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+  }
+}
+
+.mobile-only{display:none;}
+.desktop-only{display:inline-block;}
+@media(max-width:640px){
+  .mobile-only{display:flex !important;}
+  .desktop-only{display:none !important;}
+  .telescope-header{flex-direction:column;align-items:stretch;}
+}
+
+/* === Mobile Navigation (small screens) === */
+/* Mobile nav drop-up popup */
+.mobile-nav-popup {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: 90vw;
+  bottom: 48px; /* 24px prompt + 24px status */
+  background-color: var(--bg-primary);
+  border: 1px solid var(--text-primary);
+  padding: 0.75rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  z-index: 1500;
+  animation: dropFade 0.15s ease-out;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+@keyframes dropFade {
+  from { transform: translate(-50%, 10px); opacity: 0; }
+  to { transform: translate(-50%, 0); opacity: 1; }
+}
+
+/* Backdrop to capture outside clicks */
+.mobile-nav-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  z-index: 1400;
+}
+
+.mobile-nav-popup-item {
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  font-family: var(--font-primary);
+  cursor: pointer;
+  padding: 0.25rem 1rem;
+  transition: background-color 0.15s ease, color 0.15s ease;
+  width: 100%;
+  text-align: center;
+}
+
+.mobile-nav-popup-item:hover {
+  background-color: var(--selection-bg);
+  color: var(--text-primary);
+}
+
+.mobile-nav-toggle {
+  display: none; /* shown only in media query */
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0 0.5rem;
+  line-height: 1;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+@media (max-width: 768px) {
+  .status-nav {
+    display: none;
+  }
+
+  .mobile-nav-toggle {
+    display: inline-flex;
+  }
+
+  .status-right {
+    gap: 0.25rem;
+  }
+}
+
+/* New medium breakpoint: hide nav and use hamburger earlier */
+@media (max-width: 1024px) {
+  .status-nav {
+    display: none;
+  }
+  .mobile-nav-toggle {
+    display: inline-flex;
+  }
+}
+
+/* Skeleton shimmer */
+.skeleton {
+  background-color: var(--bg-secondary);
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+}
+.skeleton::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150px;
+  height: 100%;
+  width: 150px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+  animation: skeleton-shimmer 1.2s infinite;
+}
+@keyframes skeleton-shimmer {
+  100% { transform: translateX(300%); }
+}
+
+/* Route progress bar */
+.route-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--text-accent);
+  animation: routeProgressFade 1s linear forwards;
+  z-index: 2000;
+}
+@keyframes routeProgressFade {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
 }

@@ -1,0 +1,7 @@
+**Aryamaan Jain** is an innovative Full Stack Developer and Designer who seamlessly blends technical expertise with creative vision. With a Computer Science background from Bennett University and hands-on experience as a Data Science Intern at Haix.AI London, he has developed a unique perspective on modern software development.
+
+His portfolio showcases a diverse range of projects, from augmented reality applications like ReVamp to AI-powered games using NEAT algorithms. Aryamaan's technical stack includes Python, TypeScript, React, Next.js, Django, and various machine learning frameworks. He has consistently demonstrated his problem-solving abilities through competitive programming and hackathon participations, including top placements at MUJ Hackathon and BU Hacks.
+
+Beyond his technical achievements, Aryamaan is passionate about research in NLP and clustering algorithms, having worked with Dr. Hiren Thakkar on domain-specific feature extraction. His leadership experience as a Core Member of ACM Student Chapter highlights his commitment to community building and knowledge sharing.
+ 
+Currently focused on creating elegant, user-centric applications, Aryamaan continues to push the boundaries of what's possible at the intersection of technology and design. 

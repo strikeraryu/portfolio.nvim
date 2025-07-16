@@ -1,0 +1,174 @@
+{
+  "personal": {
+    "name": "Aryamaan Jain",
+    "username": "striker",
+    "host": "Aryamaan-Jain.local",
+    "github": "strikeraryu",
+    "title": "Aryamaan Jain",
+    "description": "Average Everday Developer",
+    "site": "https://portfolio.strikeraryu.com"
+  },
+  "links": {
+    "attributes": {
+      "City": {
+        "content": "Agra"
+      },
+      "Host": {
+        "content": "Mac15,7"
+      },
+      "Kernel": {
+        "content": "24.5.0"
+      },
+      "Uptime": {
+        "content": "8 hours, 47 mins"
+      },
+      "Packages": {
+        "content": "87 (brew)"
+      },
+      "Shell": {
+        "content": "zsh 5.9"
+      },
+      "Resolution": {
+        "content": "1920x1080, 1728x1117"
+      },
+      "DE": {
+        "content": "Aqua"
+      },
+      "WM": {
+        "content": "yabai"
+      },
+      "Terminal": {
+        "content": "tmux"
+      },
+      "CPU": {
+        "content": "Apple M3 Pro"
+      },
+      "GPU": {
+        "content": "Apple M3 Pro"
+      },
+      "Memory": {
+        "content": "2989MiB / 18432MiB"
+      },
+      "Email": {
+        "content": "aryamaan@example.com",
+        "link": "mailto:aryamaan@example.com"
+      },
+      "GitHub": {
+        "content": "@aryamaanjain",
+        "link": "https://github.com/aryamaanjain"
+      },
+      "LinkedIn": {
+        "content": "/in/aryamaan-jain",
+        "link": "https://linkedin.com/in/aryamaan-jain"
+      },
+      "Instagram": {
+        "content": "@aryamaan.jain",
+        "link": "https://instagram.com/aryamaan.jain"
+      }
+    }
+  },
+  "navigation": {
+    "sections": [
+      {
+        "name": "Home",
+        "shortcut": "H",
+        "path": "/",
+        "description": "Welcome to my portfolio",
+        "icon": "⌂",
+        "color": "#4a90e2"
+      },
+      {
+        "name": "Blogs",
+        "shortcut": "B",
+        "path": "/blogs",
+        "description": "My thoughts and writings",
+        "icon": "✎",
+        "color": "#7b68ee"
+      },
+      {
+        "name": "Notes",
+        "shortcut": "N",
+        "path": "/notes",
+        "description": "Quick notes and snippets",
+        "icon": "☰",
+        "color": "#32cd32"
+      },
+      {
+        "name": "Projects",
+        "shortcut": "P",
+        "path": "/projects",
+        "description": "Things I've built",
+        "icon": "⚒",
+        "color": "#ff6347"
+      },
+      {
+        "name": "Gallery",
+        "shortcut": "G",
+        "path": "/gallery",
+        "description": "Visual stories",
+        "icon": "⧉",
+        "color": "#ff69b4"
+      },
+      {
+        "name": "About",
+        "shortcut": "A",
+        "path": "/about",
+        "description": "Who I am",
+        "icon": "☻",
+        "color": "#daa520"
+      },
+      {
+        "name": "Links",
+        "shortcut": "L",
+        "path": "/links",
+        "description": "Find me elsewhere",
+        "icon": "⇄",
+        "color": "#9370db"
+      }
+    ]
+  },
+  "gallery": {
+    "enableFloatAnimation": true,
+    "gridGap": 10
+  },
+  "theme": {
+    "current": "dark",
+    "fonts": {
+      "primary": "'Monaco', 'Menlo', 'Ubuntu Mono', monospace",
+      "secondary": "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+      "mono": "'Monaco', 'Menlo', 'Ubuntu Mono', monospace"
+    },
+    "colors": {
+      "dark": {
+        "background": "#000000",
+        "background2": "#111111",
+        "foreground": "#FAF9F6",
+        "foreground2": "#808080",
+        "cursor": "#53BDFA",
+        "selection": "#B3B1AD",
+        "accent": "#C7D274",
+        "error": "#EA6C73",
+        "warning": "#F9AF4F",
+        "info": "#53BDFA",
+        "success": "#90E1C6",
+        "border": "#333333",
+        "glow": "#C7D274"
+      },
+      "light": {
+        "background": "#F4ECD8",        
+        "background2": "#E6DCC3",       
+        "foreground": "#1E1E1E",        
+        "foreground2": "#5E5E5E",       
+        "cursor": "#005F87",            
+        "selection": "#DCD2B5",         
+        "accent": "#C09C2C",            
+        "error": "#C8413A",             
+        "warning": "#D28400",           
+        "info": "#3A80A8",              
+        "success": "#3F8B4F",           
+        "border": "#C9B89E",            
+        "glow": "#C09C2C"               
+      }    
+    }
+  }
+}

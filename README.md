@@ -1,36 +1,177 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Terminal-Style Portfolio Website
 
-## Getting Started
+A retro, keyboard-first personal portfolio built with **Next.js 15**, **TypeScript** and **Tailwind CSS**. The interface emulates a UNIX terminal complete with Vim-style navigation, scan-lines and a CRT-like glow.
 
-First, run the development server:
+**Live demo →** <https://portfolio.strikeraryu.com>
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Table of Contents
+1. [Features](#-features)
+2. [Keyboard Navigation](#-keyboard-navigation)
+3. [Quick Start](#-quick-start)
+4. [Content Model](#-content-model)
+5. [REST API](#-rest-api)
+6. [Project Structure](#-project-structure)
+7. [Configuration & Theming](#-configuration--theming)
+8. [Scripts](#-scripts)
+9. [Deployment](#-deployment)
+10. [Contributing](#-contributing)
+11. [License](#-license)
+12. [Author](#author)
+
+## 🚀 Features
+
+- Vim-inspired shortcuts & keyboard-first UX
+- Fully configurable content stored as Markdown / plain-text – **no databases**
+- Dynamic Markdown rendering (blogs, notes, about)
+- Photo gallery with pagination & on-the-fly WebP thumbnails (powered by `sharp`)
+- Lazy-loaded, virtualised lists for ⚡ lightning-fast navigation
+- Light/Dark themes with authentic CRT scan-line effects
+- Modern **Next.js 15** (App Router, Streaming, Route Handlers)
+- Type-safe codebase with ESLint & strict TypeScript
+- Accessible & fully responsive design
+
+## ⌨️ Keyboard Navigation
+
+```
+H   Home            G   Gallery
+B   Blogs           A   About
+N   Notes           L   Links
+P   Projects        T   Toggle Theme
+J/K  ↑/↓   Scroll   [ ] Previous/Next item
+1-9  Quick select   /   Focus search
+Q / ESC  Exit to Home
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ⚡ Quick Start
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Clone & install**
+   ```bash
+   git clone https://github.com/aryamaanjain/portfolio.git
+   cd portfolio
+   npm install
+   ```
+2. **Run the dev server**
+   ```bash
+   npm run dev
+   ```
+3. Open <http://localhost:3000> and start typing!
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+> Requires **Node 20+**.
 
-## Learn More
+## 🗂️ Content Model
 
-To learn more about Next.js, take a look at the following resources:
+All user-editable content lives under the `content/` folder and can be updated without touching the code-base.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+content/
+├── home.txt                  # ASCII splash screen
+├── logo.txt                  # ASCII logo
+├── about/
+│   ├── 1.md                  # Short bio
+│   ├── 2.md                  # Medium bio
+│   ├── 3.md                  # Long bio
+│   └── 4.md                  # CV-style bio
+├── blogs/
+│   ├── meta.json             # Blog metadata (title, subtitle, date)
+│   └── *.md                  # Blog posts
+├── notes/
+│   ├── meta.json
+│   └── *.md                  # Quick notes & snippets
+└── gallery/
+    ├── *.jpg|png|webp|dng    # Raw photos
+    └── story/                # Image essays in Markdown
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Editing any file triggers hot-reloading – changes are reflected instantly.
 
-## Deploy on Vercel
+## 🧩 REST API
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Every piece of content is exposed through read-only HTTP endpoints.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/content/home` | ASCII for home page |
+| GET | `/api/content/logo` | ASCII logo |
+| GET | `/api/content/about/{id}` | Bio where **id** ∈ `1-4` |
+| GET | `/api/content/blogs` | List of blog metadata |
+| GET | `/api/content/blogs/{filename}` | Raw Markdown of a blog |
+| GET | `/api/content/notes` | List of notes metadata |
+| GET | `/api/content/notes/{filename}` | Raw Markdown of a note |
+| GET | `/api/content/gallery/images?offset=0&limit=24` | Paginated list of image filenames |
+| GET | `/api/content/gallery/{filename}` | Original image / RAW file |
+| GET | `/api/content/gallery/thumb?filename=<file>&w=400` | WebP thumbnail (resized on-the-fly) |
+
+All endpoints send appropriate **Cache-Control** headers for optimal performance.
+
+## 🏗️ Project Structure
+
+```
+portfolio/
+├── config.json               # Global configuration & theming
+├── content/                  # Markdown & media (see above)
+├── public/                   # Static assets (favicons, SVGs, etc.)
+└── src/
+    ├── app/                  # Next.js App Router pages
+    │   ├── api/              # Route Handlers (REST API)
+    │   ├── components/       # Client components (home, gallery, etc.)
+    │   ├── blogs/[filename]/ # Dynamic blog route
+    │   ├── notes/[filename]/ # Dynamic notes route
+    │   └── ...               # Other sections (about, projects, links)
+    ├── components/           # Re-usable shared components
+    └── types/                # Global TS types & shims
+```
+
+## 🎨 Configuration & Theming
+
+Everything from your name to the colour palette lives in **`config.json`**.
+
+```json
+{
+  "personal": { "name": "Aryamaan Jain", "site": "https://..." },
+  "navigation": {
+    "sections": [ { "name": "Blogs", "shortcut": "B", "path": "/blogs" } ]
+  },
+  "theme": {
+    "current": "dark",
+    "colors": { "dark": { "background": "#000000", "accent": "#C7D274" } }
+  }
+}
+```
+
+Tweak the `theme.colors.dark` and `theme.colors.light` objects to craft your own vibe. Fonts are defined under `theme.fonts`.
+
+## 📜 Scripts
+
+| Script | Purpose |
+|--------|---------|
+| `npm run dev` | Start dev server (**Turbopack**) |
+| `npm run build` | Production build |
+| `npm run start` | Start built app |
+| `npm run lint` | ESLint check |
+
+## ☁️ Deployment
+
+The site is 100 % static + edge-friendly (no databases), making deployment painless.
+
+### Vercel
+```bash
+vercel deploy --prod
+```
+
+### Netlify
+```bash
+npm run build
+netlify deploy --dir .next
+```
+
+## 🙋 Contributing
+
+Pull requests are welcome! Please open an issue first to discuss what you would like to change.
+
+## 📝 License
+
+[MIT](LICENSE) © Aryamaan Jain
+
+---
+
+Made with ❤️ & a healthy dose of nostalgia.
