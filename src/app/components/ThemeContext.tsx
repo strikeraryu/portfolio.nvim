@@ -80,14 +80,19 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     if (typeof window !== 'undefined') {
       const savedTheme = localStorage.getItem('theme') || 'dark';
       let savedThemeObj = null;
-      try {
-        savedThemeObj = JSON.parse(localStorage.getItem('themeObject') || 'null');
-      } catch (e) {}
-      
-      if (savedTheme === 'random' && !savedThemeObj) {
-        // If random theme is selected but no themeObject, generate and save one
-        savedThemeObj = getRandomTheme();
-        localStorage.setItem('themeObject', JSON.stringify(savedThemeObj));
+      if (savedTheme === 'random') {
+        // Always generate a fresh random theme when the preference is "random"
+        // and ensure we do NOT persist the generated colors so that
+        // a new palette is produced on the next reload as well.
+        savedThemeObj = generateRandomTheme();
+        localStorage.removeItem('themeObject');
+      } else {
+        // For non-random themes we can safely restore the last used color palette
+        try {
+          savedThemeObj = JSON.parse(localStorage.getItem('themeObject') || 'null');
+        } catch (e) {
+          /* ignore */
+        }
       }
       
       setThemeState(savedTheme);
@@ -163,7 +168,8 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const configAny = config as any;
     
     if (newTheme === 'random') {
-      newThemeObj = getRandomTheme();
+      // Generate a fresh random palette every time the user selects random
+      newThemeObj = generateRandomTheme();
     } else {
       newThemeObj = configAny.theme.colors[newTheme] || configAny.theme.colors.dark;
     }
@@ -174,7 +180,12 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     // Save to localStorage
     if (typeof window !== 'undefined') {
       localStorage.setItem('theme', newTheme);
-      localStorage.setItem('themeObject', JSON.stringify(newThemeObj));
+      if (newTheme === 'random') {
+        // Do not persist random theme object so that we get a new palette next time
+        localStorage.removeItem('themeObject');
+      } else {
+        localStorage.setItem('themeObject', JSON.stringify(newThemeObj));
+      }
     }
   }, [generateRandomTheme]);
 
