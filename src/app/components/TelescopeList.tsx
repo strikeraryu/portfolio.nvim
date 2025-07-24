@@ -10,7 +10,7 @@ import ReactMarkdown from "react-markdown";
 // removed remark-gfm to prevent runtime errors
 import { useMenuItem } from "./MenuItemContext";
 import { useFilteredKeyDown } from "./utils";
-import { useSearchParams, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { Search } from "lucide-react";
 import Skeleton from "./Skeleton";
 import Link from "next/link";
@@ -42,8 +42,8 @@ export default function TelescopeList({ folder }: TelescopeListProps) {
   // jsx caching removed for simplicity
   const [isMarkdownLoading, setIsMarkdownLoading] = useState(false);
 
-  const params = useSearchParams();
-  const [searchQuery, setSearchQuery] = useState(params.get('q') || '');
+  const initialQ = typeof window !== 'undefined' ? new URLSearchParams(window.location.search).get('q') || '' : '';
+  const [searchQuery, setSearchQuery] = useState(initialQ);
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [debouncedIndex, setDebouncedIndex] = useState(0);
 

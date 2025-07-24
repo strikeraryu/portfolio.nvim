@@ -11,59 +11,52 @@
   "links": {
     "attributes": {
       "City": {
-        "content": "Agra"
+        "content": "Bengaluru"
       },
-      "Host": {
-        "content": "Mac15,7"
+      "Phone": {
+        "content": "Pixel 7"
       },
-      "Kernel": {
-        "content": "24.5.0"
+      "Camera": {
+        "content": "Sony ZV-E10"
       },
-      "Uptime": {
-        "content": "8 hours, 47 mins"
+      "Laptop": {
+        "content": "Apple M3 Pro"
       },
-      "Packages": {
-        "content": "87 (brew)"
-      },
-      "Shell": {
-        "content": "zsh 5.9"
-      },
-      "Resolution": {
-        "content": "1920x1080, 1728x1117"
-      },
-      "DE": {
-        "content": "Aqua"
+      "Keyboard": {
+        "content": "FILCO Majestouch Xacro M10SP"
       },
       "WM": {
-        "content": "yabai"
+        "content": "Amethyst"
       },
       "Terminal": {
-        "content": "tmux"
+        "content": "Ghostty"
       },
-      "CPU": {
-        "content": "Apple M3 Pro"
-      },
-      "GPU": {
-        "content": "Apple M3 Pro"
-      },
-      "Memory": {
-        "content": "2989MiB / 18432MiB"
+      "Ide": {
+        "content": "NVIM"
       },
       "Email": {
-        "content": "aryamaan@example.com",
-        "link": "mailto:aryamaan@example.com"
+        "content": "striker.aryu56@gmail.com",
+        "link": "mailto:striker.aryu56@gmail.com"
+      },
+      "Twitter": {
+        "content": "@striker_aryu",
+        "link": "https://x.com/striker_aryu"
+      },
+      "Medium": {
+        "content": "@striker-aryu56",
+        "link": "https://medium.com/@striker-aryu56"
       },
       "GitHub": {
-        "content": "@aryamaanjain",
-        "link": "https://github.com/aryamaanjain"
+        "content": "strikeraryu",
+        "link": "https://github.com/strikeraryu"
       },
       "LinkedIn": {
-        "content": "/in/aryamaan-jain",
-        "link": "https://linkedin.com/in/aryamaan-jain"
+        "content": "/in/strikeraryu",
+        "link": "https://linkedin.com/in/strikeraryu"
       },
       "Instagram": {
-        "content": "@aryamaan.jain",
-        "link": "https://instagram.com/aryamaan.jain"
+        "content": "striker_aryu",
+        "link": "https://www.instagram.com/striker_aryu/"
       }
     }
   },
@@ -73,6 +66,7 @@
         "name": "Home",
         "shortcut": "H",
         "path": "/",
+        "prompt": "Visit Home",
         "description": "Welcome to my portfolio",
         "icon": "⌂",
         "color": "#4a90e2"
@@ -81,6 +75,7 @@
         "name": "Blogs",
         "shortcut": "B",
         "path": "/blogs",
+        "prompt": "Read Blogs",
         "description": "My thoughts and writings",
         "icon": "✎",
         "color": "#7b68ee"
@@ -89,6 +84,7 @@
         "name": "Notes",
         "shortcut": "N",
         "path": "/notes",
+        "prompt": "Read Personal Notes",
         "description": "Quick notes and snippets",
         "icon": "☰",
         "color": "#32cd32"
@@ -97,6 +93,7 @@
         "name": "Projects",
         "shortcut": "P",
         "path": "/projects",
+        "prompt": "Check Projects",
         "description": "Things I've built",
         "icon": "⚒",
         "color": "#ff6347"
@@ -105,6 +102,7 @@
         "name": "Gallery",
         "shortcut": "G",
         "path": "/gallery",
+        "prompt": "View Photography",
         "description": "Visual stories",
         "icon": "⧉",
         "color": "#ff69b4"
@@ -113,6 +111,7 @@
         "name": "About",
         "shortcut": "A",
         "path": "/about",
+        "prompt": "Read About Me",
         "description": "Who I am",
         "icon": "☻",
         "color": "#daa520"
@@ -121,6 +120,7 @@
         "name": "Links",
         "shortcut": "L",
         "path": "/links",
+        "prompt": "My Links to other places",
         "description": "Find me elsewhere",
         "icon": "⇄",
         "color": "#9370db"

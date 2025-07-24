@@ -90,7 +90,7 @@ export default function HomeClient({ homeArt }: HomeClientProps) {
                   <div className="menu-text">
                     <span className="menu-icon">{section.icon}</span>
                     <span className="menu-arrow">{'>'}</span>
-                    <span className="menu-title">{section.description}</span>
+                    <span className="menu-title">{section.prompt}</span>
                   </div>
                   <div className="menu-shortcut">
                     {getShortcutDisplay(section.shortcut)}
