@@ -17,17 +17,19 @@ export default async function BlogPostPage({ params }: { params: Promise<Params>
   let title: string = filename;
   let subtitle = '';
   let date = '';
+  let tags: string[] = [];
   try {
     const metaRaw = await readFile(
       path.join(process.cwd(), 'content', 'blogs', 'meta.json'),
       'utf-8'
     );
-    const meta = JSON.parse(metaRaw) as Record<string, { name: string; subtitle: string; date: string }>;
+    const meta = JSON.parse(metaRaw) as Record<string, { name: string; subtitle: string; date: string; tags?: string[] }>;
     const info = meta[filename];
     if (info) {
       title = info.name;
       subtitle = info.subtitle;
       date = info.date;
+      tags = info.tags || [];
     }
   } catch (err) {
     console.error('Failed to read blogs meta.json', err);
@@ -40,6 +42,7 @@ export default async function BlogPostPage({ params }: { params: Promise<Params>
       title={title}
       subtitle={subtitle}
       date={date}
+      tags={tags}
       file={filename}
     />
   );

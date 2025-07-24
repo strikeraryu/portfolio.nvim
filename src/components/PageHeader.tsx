@@ -2,14 +2,16 @@
 
 import { usePathname } from 'next/navigation';
 import config from '../../config.json';
+import Link from 'next/link';
 
 interface PageHeaderProps {
   title?: string;
   description?: string;
   color?: string;
+  tags?: string[];
 }
 
-export default function PageHeader({ title, description, color }: PageHeaderProps) {
+export default function PageHeader({ title, description, color, tags = [] }: PageHeaderProps) {
   const pathname = usePathname();
   
   // Get section info from config if not provided
@@ -30,6 +32,15 @@ export default function PageHeader({ title, description, color }: PageHeaderProp
             <p className="page-subtitle">
               {pageDescription}
             </p>
+            {tags.length > 0 && (
+              <div className="flex flex-wrap gap-1 mt-2">
+                {tags.map(tag => (
+                  <Link key={tag} href={`${pathname.split('/')[1] ? '/' + pathname.split('/')[1] : ''}?q=${encodeURIComponent(tag)}`} prefetch className="tag-chip hover:underline">
+                    {tag}
+                  </Link>
+                ))}
+              </div>
+            )}
           </div>
           
           {/* Shortcuts (hidden on mobile) */}

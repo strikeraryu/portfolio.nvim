@@ -6,6 +6,7 @@ import dynamic from 'next/dynamic';
 import PageHeader from '../../components/PageHeader';
 import { useFilteredKeyDown } from './utils';
 import { useMenuItem } from './MenuItemContext';
+import Link from 'next/link';
 
 // Dynamically import react-markdown (cast to any to avoid complex generic types)
 const ReactMarkdown: any = dynamic(() => import('react-markdown').then((m) => m.default as any), {
@@ -20,9 +21,10 @@ interface Props {
   subtitle?: string;
   date?: string;
   file: string;
+  tags?: string[];
 }
 
-export default function MarkdownFullView({ markdown, folder, title, subtitle = '', date, file }: Props) {
+export default function MarkdownFullView({ markdown, folder, title, subtitle = '', date, file, tags = [] }: Props) {
   const router = useRouter();
   const { setCurrentItem } = useMenuItem();
 
@@ -43,7 +45,7 @@ export default function MarkdownFullView({ markdown, folder, title, subtitle = '
 
   return (
     <div>
-      <PageHeader title={title} description={subtitle} />
+      <PageHeader title={title} description={subtitle} tags={tags} />
       <div className="page-content" style={{ position: 'relative' }}>
         {/* Esc hint in section top-right */}
         <div

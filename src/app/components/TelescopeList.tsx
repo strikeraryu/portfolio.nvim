@@ -10,15 +10,17 @@ import ReactMarkdown from "react-markdown";
 // removed remark-gfm to prevent runtime errors
 import { useMenuItem } from "./MenuItemContext";
 import { useFilteredKeyDown } from "./utils";
-import { useRouter } from "next/navigation";
+import { useSearchParams, useRouter } from 'next/navigation';
 import { Search } from "lucide-react";
 import Skeleton from "./Skeleton";
+import Link from "next/link";
 
 interface EntryMeta {
   file: string;
   name: string;
   subtitle: string;
   date: string; // YYYY-MM-DD
+  tags?: string[];
 }
 
 interface TelescopeListProps {
@@ -40,7 +42,8 @@ export default function TelescopeList({ folder }: TelescopeListProps) {
   // jsx caching removed for simplicity
   const [isMarkdownLoading, setIsMarkdownLoading] = useState(false);
 
-  const [searchQuery, setSearchQuery] = useState("");
+  const params = useSearchParams();
+  const [searchQuery, setSearchQuery] = useState(params.get('q') || '');
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [debouncedIndex, setDebouncedIndex] = useState(0);
 
@@ -78,9 +81,10 @@ export default function TelescopeList({ folder }: TelescopeListProps) {
   const filtered = entries.filter((e) => {
     const q = searchQuery.toLowerCase();
     return (
-      e.name.toLowerCase().includes(q) ||
-      e.subtitle.toLowerCase().includes(q) ||
-      e.date.includes(q)
+      (e.name?.toLowerCase?.().includes(q) ?? false) ||
+      (e.subtitle?.toLowerCase?.().includes(q) ?? false) ||
+      e.date.includes(q) ||
+      (e.tags && e.tags.some(t => t.toLowerCase().includes(q)))
     );
   });
 
@@ -292,6 +296,20 @@ export default function TelescopeList({ folder }: TelescopeListProps) {
         <div className="overflow-hidden flex-1">
           <div className="telescope-item-title truncate">{entry.name}</div>
           <div className="telescope-item-sub truncate">{entry.subtitle}</div>
+          {entry.tags && (
+            <div className="flex flex-wrap gap-1 mt-1">
+              {entry.tags.map(tag => (
+                <Link
+                  key={tag}
+                  href={`/${folder}?q=${encodeURIComponent(tag)}`}
+                  prefetch
+                  className="tag-chip hover:underline"
+                >
+                  {tag}
+                </Link>
+              ))}
+            </div>
+          )}
         </div>
         <span className="telescope-item-date" >
           {entry.date}

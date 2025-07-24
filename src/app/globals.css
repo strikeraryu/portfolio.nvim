@@ -1190,3 +1190,56 @@ html, body {
   0% { opacity: 1; }
   100% { opacity: 0; }
 }
+
+/* --- Blog Markdown Typography Tweaks --- */
+.telescope-markdown {
+  line-height: 1.75; /* more comfortable reading */
+}
+.telescope-markdown p {
+  margin: 0.75rem 0; /* larger paragraph spacing */
+}
+.telescope-markdown h1 {
+  font-size: 1.6rem;
+  margin: 1.25rem 0 0.5rem 0;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid var(--border-color);
+}
+.telescope-markdown h2 {
+  font-size: 1.4rem;
+  margin: 1rem 0 0.5rem 0;
+}
+.telescope-markdown h3 {
+  font-size: 1.25rem;
+  margin: 0.75rem 0 0.4rem 0;
+}
+.telescope-markdown img {
+  display: block;
+  margin: 1rem auto;
+  max-width: 100%;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+}
+.telescope-markdown pre {
+  margin: 1rem 0;
+}
+.telescope-markdown code {
+  line-height: 1.4;
+}
+
+.tag-chip{
+  font-size:10px;
+  padding:0.1rem 0.45rem;
+  margin:0 0.15rem 0.45rem 0;
+  border:1px solid var(--text-secondary);
+  border-radius:4px;
+  color:var(--text-secondary);
+  background:transparent;
+  text-transform:lowercase;
+  font-family:var(--font-mono);
+  transition:all 0.15s ease;
+}
+.tag-chip:hover{
+  border-color:var(--text-accent);
+  color:var(--text-accent);
+  cursor:default;
+}

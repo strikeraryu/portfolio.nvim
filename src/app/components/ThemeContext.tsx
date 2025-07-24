@@ -88,8 +88,8 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
         localStorage.removeItem('themeObject');
       } else {
         // For non-random themes we can safely restore the last used color palette
-        try {
-          savedThemeObj = JSON.parse(localStorage.getItem('themeObject') || 'null');
+      try {
+        savedThemeObj = JSON.parse(localStorage.getItem('themeObject') || 'null');
         } catch (e) {
           /* ignore */
         }
@@ -184,7 +184,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
         // Do not persist random theme object so that we get a new palette next time
         localStorage.removeItem('themeObject');
       } else {
-        localStorage.setItem('themeObject', JSON.stringify(newThemeObj));
+      localStorage.setItem('themeObject', JSON.stringify(newThemeObj));
       }
     }
   }, [generateRandomTheme]);
