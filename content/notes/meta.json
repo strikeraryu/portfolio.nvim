@@ -1,27 +1,369 @@
 {
-  "note-01.md": { "name": "Dummy Note 01", "subtitle": "Subtitle 01", "date": "2024-02-01" },
-  "note-02.md": { "name": "Dummy Note 02", "subtitle": "Subtitle 02", "date": "2024-02-02" },
-  "note-03.md": { "name": "Dummy Note 03", "subtitle": "Subtitle 03", "date": "2024-02-03" },
-  "note-04.md": { "name": "Dummy Note 04", "subtitle": "Subtitle 04", "date": "2024-02-04" },
-  "note-05.md": { "name": "Dummy Note 05", "subtitle": "Subtitle 05", "date": "2024-02-05" },
-  "note-06.md": { "name": "Dummy Note 06", "subtitle": "Subtitle 06", "date": "2024-02-06" },
-  "note-07.md": { "name": "Dummy Note 07", "subtitle": "Subtitle 07", "date": "2024-02-07" },
-  "note-08.md": { "name": "Dummy Note 08", "subtitle": "Subtitle 08", "date": "2024-02-08" },
-  "note-09.md": { "name": "Dummy Note 09", "subtitle": "Subtitle 09", "date": "2024-02-09" },
-  "note-10.md": { "name": "Dummy Note 10", "subtitle": "Subtitle 10", "date": "2024-02-10" },
-  "note-11.md": { "name": "Dummy Note 11", "subtitle": "Subtitle 11", "date": "2024-02-11" },
-  "note-12.md": { "name": "Dummy Note 12", "subtitle": "Subtitle 12", "date": "2024-02-12" },
-  "note-13.md": { "name": "Dummy Note 13", "subtitle": "Subtitle 13", "date": "2024-02-13" },
-  "note-14.md": { "name": "Dummy Note 14", "subtitle": "Subtitle 14", "date": "2024-02-14" },
-  "note-15.md": { "name": "Dummy Note 15", "subtitle": "Subtitle 15", "date": "2024-02-15" },
-  "note-16.md": { "name": "Dummy Note 16", "subtitle": "Subtitle 16", "date": "2024-02-16" },
-  "note-17.md": { "name": "Dummy Note 17", "subtitle": "Subtitle 17", "date": "2024-02-17" },
-  "note-18.md": { "name": "Dummy Note 18", "subtitle": "Subtitle 18", "date": "2024-02-18" },
-  "note-19.md": { "name": "Dummy Note 19", "subtitle": "Subtitle 19", "date": "2024-02-19" },
-  "note-20.md": { "name": "Dummy Note 20", "subtitle": "Subtitle 20", "date": "2024-02-20" },
-  "note-21.md": { "name": "Dummy Note 21", "subtitle": "Subtitle 21", "date": "2024-02-21" },
-  "note-22.md": { "name": "Dummy Note 22", "subtitle": "Subtitle 22", "date": "2024-02-22" },
-  "note-23.md": { "name": "Dummy Note 23", "subtitle": "Subtitle 23", "date": "2024-02-23" },
-  "note-24.md": { "name": "Dummy Note 24", "subtitle": "Subtitle 24", "date": "2024-02-24" },
-  "note-25.md": { "name": "Dummy Note 25", "subtitle": "Subtitle 25", "date": "2024-02-25" }
-} 
+  "cp-min-edge-rev.md": {
+    "name": "Competitive Programming - Minimum Edge Reversals So Every Node Is Reachable",
+    "date": "14-03-2025",
+    "tags": [
+      "leetcode",
+      "competitive-programming",
+      "graph",
+      "dfs",
+      "dynamic-programming"
+    ]
+  },
+  "cp-rearrange-fruit.md": {
+    "name": "Competitive Programming - Rearrange Fruit",
+    "date": "16-03-2025",
+    "tags": [
+      "leetcode",
+      "competitive-programming",
+      "greedy",
+      "dynamic-programming"
+    ]
+  },
+  "cp-count-power-int.md": {
+    "name": "Competitive Programming - Count Power Int [Digit DP]",
+    "date": "12-04-2025",
+    "tags": [
+      "leetcode",
+      "dynamic-programming"
+    ]
+  },
+  "cp-find-busy-server.md": {
+    "name": "Competitive Programming - Find Servers That Handled Most Number of Requests",
+    "date": "26-03-2025",
+    "tags": [
+      "leetcode",
+      "competitive-programming",
+      "heap"
+    ]
+  },
+  "cp-min-cost-walk-grp.md": {
+    "name": "Competitive Programming - Minimum Cost Walking Graph",
+    "date": "27-03-2025",
+    "tags": [
+      "leetcode",
+      "competitive-programming",
+      "graph",
+      "union-find"
+    ]
+  },
+  "cp-lca-deepest-leaves.md": {
+    "name": "Competitive Programming - LCA of Deepest Leaves",
+    "date": "11-04-2025",
+    "tags": [
+      "leetcode",
+      "competitive-programming",
+      "binary-tree",
+      "dfs"
+    ]
+  },
+  "cp-stud-attend-record.md": {
+    "name": "Competitive Programming - Student Attendance Record",
+    "date": "26-03-2025",
+    "tags": [
+      "leetcode",
+      "competitive-programming",
+      "dynamic-programming"
+    ]
+  },
+  "cp-max-num-vis-points.md": {
+    "name": "Competitive Programming - Maximum Number of Visible Points",
+    "date": "29-03-2025",
+    "tags": [
+      "leetcode",
+      "competitive-programming",
+      "sliding-window",
+      "sorting",
+      "geometry"
+    ]
+  },
+  "cp-apply-op-max-score.md": {
+    "name": "Competitive Programming - Apply Operation Max Score",
+    "date": "29-03-2025",
+    "tags": [
+      "leetcode",
+      "competitive-programming",
+      "monotonic-stack",
+      "greedy"
+    ]
+  },
+  "cp-put-marbles-in-bag.md": {
+    "name": "Competitive Programming - Put marbles in bag",
+    "date": "01-04-2025",
+    "tags": [
+      "leetcode",
+      "competitive-programming",
+      "greedy"
+    ]
+  },
+  "cp-swap-adj-lr-string.md": {
+    "name": "Competitive Programming - Swap Adjacent in LR String",
+    "date": "18-03-2025",
+    "tags": [
+      "leetcode",
+      "competitive-programming",
+      "string"
+    ]
+  },
+  "cp-max-point-with-cost.md": {
+    "name": "Competitive Programming - Maximum Points With Cost",
+    "date": "18-03-2025",
+    "tags": [
+      "leetcode",
+      "competitive-programming",
+      "dynamic-programming"
+    ]
+  },
+  "cp-no-of-flowers-bloom.md": {
+    "name": "",
+    "date": "16-03-2025",
+    "tags": [
+      "leetcode",
+      "competitive-programming",
+      "prefix-sum",
+      "binary-search"
+    ]
+  },
+  "kyl-flow.canvas": {
+    "name": "",
+    "date": "",
+    "tags": []
+  },
+  "cp-count-number-of-special-subsequences.md": {
+    "name": "Competitive Programming - Count Number of Special Subsequences",
+    "date": "12-03-2025",
+    "tags": [
+      "leetcode",
+      "competitive-programming",
+      "mathematics",
+      "combinatorics"
+    ]
+  },
+  "cp-short-path-with-obs-elemination.md": {
+    "name": "Competitive Programming - Shortest Path with Obstacle Elimination",
+    "date": "18-03-2025",
+    "tags": [
+      "leetcode",
+      "competitive-programming",
+      "bfs"
+    ]
+  },
+  "cp-distribute-repeating-integers.md": {
+    "name": "Competitive Programming - Distribute Repeating Integers",
+    "date": "13-03-2025",
+    "tags": [
+      "leetcode",
+      "competitive-programming",
+      "bitmast",
+      "greedy"
+    ]
+  },
+  "cp-max-seg-sum-after-removal.md": {
+    "name": "Competitive Programming - Maximum Segment Sum After Removal",
+    "date": "18-03-2025",
+    "tags": [
+      "leetcode",
+      "competitive-programming",
+      "union-find"
+    ]
+  },
+  "cp-long-inc-path-in-matric.md": {
+    "name": "Competitive Programming - Longest Increasing Path in a Matrix",
+    "date": "29-03-2025",
+    "tags": [
+      "leetcode",
+      "competitive-programming",
+      "dfs",
+      "dp"
+    ]
+  },
+  "cp-time-to-mark-all-nodes.md": {
+    "name": "Competitive Programming - Time to Mark All Nodes",
+    "date": "12-03-2025",
+    "tags": [
+      "leetcode",
+      "competitive-programming",
+      "tree",
+      "dfs"
+    ]
+  },
+  "cp-count-increasing-quads.md": {
+    "name": "Competitive Programming - Count Increasing Quads",
+    "date": "12-03-2025",
+    "tags": [
+      "leetcode",
+      "competitive-programming"
+    ]
+  },
+  "cp-number-of-good-paths.md": {
+    "name": "Competitive Programming - Number of Good Paths",
+    "date": "30-03-2025",
+    "tags": [
+      "leetcode",
+      "competitive-programming",
+      "tree",
+      "union-find"
+    ]
+  },
+  "cp-swim-in-rising-water.md": {
+    "name": "Competitive Programming - Swim in Rising Water",
+    "date": "18-03-2025",
+    "tags": [
+      "leetcode",
+      "competitive-programming",
+      "bfs"
+    ]
+  },
+  "case-study-csrf-token-handling-in-rails-scaler.md": {
+    "name": "CaseStudy - CSRF token handing in rails and scaler",
+    "date": "15-07-2024",
+    "tags": [
+      "csrf",
+      "scaler",
+      "case-study"
+    ]
+  },
+  "debug-csrf-token-issue-on-ssb-landing-page.md": {
+    "name": "Debug: CSRF Token issue on SSB Landing Page",
+    "date": "03-08-2024",
+    "tags": [
+      "rails-csrf-token-handling",
+      "csrf",
+      "debug"
+    ]
+  },
+  "debug-csrf-token-issue-on-new-landing-page.md": {
+    "name": "Debug - CSRF Token Issue On New Landing Page",
+    "date": "15-07-2024",
+    "tags": [
+      "rails-csrf-token-handling",
+      "csrf",
+      "debug"
+    ]
+  },
+  "cross-site-request-forgery-csrf.md": {
+    "name": "Cross Site Request Forgery (CSRF)",
+    "date": "12-07-2024",
+    "tags": [
+      "web",
+      "security"
+    ]
+  },
+  "claude-artifact-internal-hackernoon.md": {
+    "name": "",
+    "date": "",
+    "tags": [
+      ""
+    ]
+  },
+  "claude-artifact-prompt.md": {
+    "name": "",
+    "date": "",
+    "tags": [
+      ""
+    ]
+  },
+  "p99-patterns-of-low-latency.md": {
+    "name": "",
+    "date": "",
+    "tags": [
+      ""
+    ]
+  },
+  "system-design-database-foundation.md": {
+    "name": "System Design: Database foundation",
+    "date": "24-08-2024",
+    "tags": [
+      "system-design",
+      "database",
+      "redis"
+    ]
+  },
+  "system-design-scaling-foundation.md": {
+    "name": "System Design: Scaling Foundation",
+    "date": "02-12-2024",
+    "tags": [
+      "system-design",
+      "scaling"
+    ]
+  },
+  "system-design-caching-foundation.md": {
+    "name": "System Design: Caching foundation",
+    "date": "24-08-2024",
+    "tags": [
+      "system-design",
+      "cache"
+    ]
+  },
+  "system-design-interview-guide.md": {
+    "name": "System Design Interview Guide",
+    "date": "24-11-2024",
+    "tags": [
+      "system-design",
+      "interview"
+    ]
+  },
+  "system-design-cap-theorem.md": {
+    "name": "System Design Cap Theorem",
+    "date": "19-05-2025",
+    "tags": [
+      "system-design"
+    ]
+  },
+  "system-design-delegation.md": {
+    "name": "System Design: Delegation",
+    "date": "04-12-2024",
+    "tags": [
+      "system-design",
+      "kafka",
+      "message-queue",
+      "message-stream"
+    ]
+  },
+  "system-design-kafka.md": {
+    "name": "System Design Kafka",
+    "date": "19-05-2025",
+    "tags": [
+      "system-design",
+      "aws"
+    ]
+  },
+  "unix-file-system-structure.md": {
+    "name": "Unix File System Structure",
+    "date": "28-08-2024",
+    "tags": [
+      "unix",
+      "linux"
+    ]
+  },
+  "system-design-offline-online-status.md": {
+    "name": "System Design: Offline Online Status",
+    "date": "11-08-2024",
+    "tags": [
+      "system-design"
+    ]
+  },
+  "tty-in-depth.md": {
+    "name": "TTY in Depth",
+    "date": "22-09-2024",
+    "tags": [
+      "unix",
+      "terminal"
+    ]
+  },
+  "virtual-in-c++.md": {
+    "name": "Virtual in C++",
+    "date": "29-04-2025",
+    "tags": [
+      "C++",
+      "internals"
+    ]
+  },
+  "git-in-depth.md": {
+    "name": "In Depth about GIT",
+    "date": "05-08-2024",
+    "tags": [
+      "tool"
+    ]
+  }
+}
