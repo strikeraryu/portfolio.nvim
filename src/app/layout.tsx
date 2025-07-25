@@ -330,11 +330,11 @@ function LayoutContent({ children }: { children: React.ReactNode }) {
           type="font/woff2"
           crossOrigin="anonymous"
         />
-        <meta property="og:image" content={`/home.png`} />
+        <meta property="og:image" content="https://strikeraryu.com/home.png"/>
         <meta property="og:title" content="striker@Aryamaan-Jain.local" />
         <meta property="og:description" content='Average Everyday Developer' />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:image" content={`/home.png`} />
+        <meta name="twitter:image" content="https://strikeraryu.com/home.png" />
         <meta name="twitter:description" content="Average Everyday Developer" />
         <meta name="description" content="Average Everyday Developer" />
         <script
