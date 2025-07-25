@@ -333,6 +333,7 @@ function LayoutContent({ children }: { children: React.ReactNode }) {
         <meta property="og:image" content="https://strikeraryu.com/home.png"/>
         <meta property="og:title" content="striker@Aryamaan-Jain.local" />
         <meta property="og:description" content='Average Everyday Developer' />
+        <meta property="og:url" content="https://strikeraryu.com" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content="https://strikeraryu.com/home.png" />
         <meta name="twitter:description" content="Average Everyday Developer" />
