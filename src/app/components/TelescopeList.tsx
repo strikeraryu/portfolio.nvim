@@ -47,10 +47,33 @@ export default function TelescopeList({ folder }: TelescopeListProps) {
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [debouncedIndex, setDebouncedIndex] = useState(0);
 
+  const pathname = typeof window !== 'undefined' ? window.location.pathname : '';
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const qParam = new URLSearchParams(window.location.search).get('q') || '';
+    setSearchQuery(qParam);
+  }, [pathname]);
+
+  // keep search bar in sync with URL when navigation happens via links
+  useEffect(() => {
+    const sync = () => {
+      const q = new URLSearchParams(window.location.search).get('q') || '';
+      setSearchQuery(q);
+    };
+    if (typeof window !== 'undefined') {
+      sync();
+      window.addEventListener('popstate', sync);
+    }
+    return () => {
+      if (typeof window !== 'undefined') window.removeEventListener('popstate', sync);
+    };
+  }, []);
+
   const searchRef = useRef<HTMLInputElement | null>(null);
 
   /* Pagination constants */
-  const PAGE_SIZE = 10;
+  const PAGE_SIZE = 8;
 
   const previewRef = useRef<HTMLDivElement | null>(null);
   const fullViewRef = useRef<HTMLDivElement | null>(null);
@@ -66,6 +89,11 @@ export default function TelescopeList({ folder }: TelescopeListProps) {
         const res = await fetch(`/api/content/${folder}`);
         if (!res.ok) throw new Error("Failed to fetch entries");
         const data: EntryMeta[] = await res.json();
+        data.sort((a,b)=>{
+          const da = new Date(a.date.replace(/(\d{2})-(\d{2})-(\d{4})/,'$3-$2-$1'));
+          const db = new Date(b.date.replace(/(\d{2})-(\d{2})-(\d{4})/,'$3-$2-$1'));
+          return db.getTime()-da.getTime();
+        });
         setEntries(data);
         // Reset state when folder changes
         setSelectedIndex(0);
@@ -156,6 +184,13 @@ export default function TelescopeList({ folder }: TelescopeListProps) {
       loadContent();
     }
   }, [filtered, debouncedIndex, folder, openEntry]);
+
+  // auto-scroll selected item into view
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const el = document.querySelector('.telescope-item-selected');
+    el?.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+  }, [selectedIndex, currentPage]);
 
   // Focus search bar on `/`
   const focusSearch = useCallback(() => {
@@ -290,7 +325,7 @@ export default function TelescopeList({ folder }: TelescopeListProps) {
       <div
         key={entry.file}
         className={`telescope-item ${isSelected ? "telescope-item-selected" : ""}`}
-        onMouseEnter={() => setSelectedIndex(absoluteIdx)}
+        // hover disabled to prevent accidental jumps
         onClick={() => router.push(`/${folder}/${encodeURIComponent(entry.file)}`)}
       >
         <div className="overflow-hidden flex-1">
@@ -303,7 +338,8 @@ export default function TelescopeList({ folder }: TelescopeListProps) {
                   key={tag}
                   href={`/${folder}?q=${encodeURIComponent(tag)}`}
                   prefetch
-                  className="tag-chip hover:underline"
+                  className="tag-chip tag-chip-sm hover:underline"
+                  onClick={(e)=>{e.stopPropagation(); setSearchQuery(tag);}}
                 >
                   {tag}
                 </Link>

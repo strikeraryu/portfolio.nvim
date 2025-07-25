@@ -1243,3 +1243,4 @@ html, body {
   color:var(--text-accent);
   cursor:default;
 }
+.tag-chip-sm{font-size:9px;padding:0.05rem 0.35rem;}

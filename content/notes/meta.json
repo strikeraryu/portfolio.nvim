@@ -115,7 +115,7 @@
     ]
   },
   "cp-no-of-flowers-bloom.md": {
-    "name": "",
+    "name": "Competitive Programming - Number of Flowers in Full Bloom",
     "date": "16-03-2025",
     "tags": [
       "leetcode",
@@ -123,11 +123,6 @@
       "prefix-sum",
       "binary-search"
     ]
-  },
-  "kyl-flow.canvas": {
-    "name": "",
-    "date": "",
-    "tags": []
   },
   "cp-count-number-of-special-subsequences.md": {
     "name": "Competitive Programming - Count Number of Special Subsequences",
@@ -249,27 +244,6 @@
       "security"
     ]
   },
-  "claude-artifact-internal-hackernoon.md": {
-    "name": "",
-    "date": "",
-    "tags": [
-      ""
-    ]
-  },
-  "claude-artifact-prompt.md": {
-    "name": "",
-    "date": "",
-    "tags": [
-      ""
-    ]
-  },
-  "p99-patterns-of-low-latency.md": {
-    "name": "",
-    "date": "",
-    "tags": [
-      ""
-    ]
-  },
   "system-design-database-foundation.md": {
     "name": "System Design: Database foundation",
     "date": "24-08-2024",
@@ -320,14 +294,6 @@
       "message-stream"
     ]
   },
-  "system-design-kafka.md": {
-    "name": "System Design Kafka",
-    "date": "19-05-2025",
-    "tags": [
-      "system-design",
-      "aws"
-    ]
-  },
   "unix-file-system-structure.md": {
     "name": "Unix File System Structure",
     "date": "28-08-2024",
@@ -364,6 +330,203 @@
     "date": "05-08-2024",
     "tags": [
       "tool"
+    ]
+  },
+  "adguard-server-setup.md": {
+    "name": "Setup: for adguard using docker",
+    "date": "13-09-2024",
+    "tags": [
+      "server",
+      "unix",
+      "dns",
+      "docker"
+    ]
+  },
+  "ubuntu-server-setup.md": {
+    "name": "Ubuntu server setup",
+    "date": "08-09-2024",
+    "tags": [
+      "server",
+      "unix",
+      "terminal"
+    ]
+  },
+  "terminal-signals.md": {
+    "name": "Terminal Signals",
+    "date": "16-07-2024",
+    "tags": [
+      "terminal",
+      "unix",
+      "tty-in-depth"
+    ]
+  },
+  "ssh-in-depth.md": {
+    "name": "SSH In Depth",
+    "date": "14-08-2024",
+    "tags": [
+      "ssh",
+      "security",
+      "terminal"
+    ]
+  },
+  "site-vs-origin.md": {
+    "name": "Site vs Origin",
+    "date": "12-07-2024",
+    "tags": [
+      "web"
+    ]
+  },
+  "setup-vpn-for-container.md": {
+    "name": "Setup VPN for container",
+    "date": "20-10-2024",
+    "tags": [
+      "docker",
+      "vpn"
+    ]
+  },
+  "ruby-metaprogramming.md": {
+    "name": "Ruby Metaprogramming",
+    "date": "09-10-2024",
+    "tags": [
+      "ruby",
+      "language"
+    ]
+  },
+  "ruby-class-paradox.md": {
+    "name": "Ruby Class Paradox",
+    "date": "09-10-2024",
+    "tags": [
+      "ruby",
+      "language"
+    ]
+  },
+  "ruby-closures.md": {
+    "name": "Ruby Closures",
+    "date": "29-04-2025",
+    "tags": [
+      "ruby"
+    ]
+  },
+  "ruby-blog-on-dsl.md": {
+    "name": "",
+    "date": "",
+    "tags": [
+      ""
+    ]
+  },
+  "rate-limiting-algorithm.md": {
+    "name": "Rate Limiting Algorithm",
+    "date": "19-05-2025",
+    "tags": [
+      "system-design",
+      "lld"
+    ]
+  },
+  "python-internals-array-initialization.md": {
+    "name": "Python Internals: Array initialization",
+    "date": "22-10-2024",
+    "tags": [
+      "python",
+      "language"
+    ]
+  },
+  "port-swigger-website.md": {
+    "name": "Port Swigger Website",
+    "date": "12-07-2024",
+    "tags": [
+      "csrf",
+      "security",
+      "web"
+    ]
+  },
+  "nginx-in-depth.md": {
+    "name": "Nginx In Depth",
+    "date": "14-09-2024",
+    "tags": [
+      "nginx",
+      "sever"
+    ]
+  },
+  "lld-bridge-pattern.md": {
+    "name": "LLD Bridge Pattern",
+    "date": "19-05-2025",
+    "tags": [
+      "lld"
+    ]
+  },
+  "lld-decorator-pattern.md": {
+    "name": "LLD: Decorator Pattern",
+    "date": "16-11-2024",
+    "tags": [
+      "lld"
+    ]
+  },
+  "lld-solid-principles.md": {
+    "name": "LLD Solid Principles",
+    "date": "13-10-2024",
+    "tags": [
+      "lld"
+    ]
+  },
+  "lld-observer-pattern.md": {
+    "name": "LLD Observer Pattern",
+    "date": "06-11-2024",
+    "tags": [
+      "lld"
+    ]
+  },
+  "lld-strategy-pattern.md": {
+    "name": "LLD Strategy Pattern",
+    "date": "05-11-2024",
+    "tags": [
+      "lld"
+    ]
+  },
+  "lld-factory-pattern.md": {
+    "name": "LLD Factory Pattern",
+    "date": "16-11-2024",
+    "tags": [
+      "lld"
+    ]
+  },
+  "modular-multiplicative-inverse.md": {
+    "name": "Modular Multiplicative Inverse",
+    "date": "27-02-2025",
+    "tags": [
+      "number-theory",
+      "mathematics",
+      "competitive-programming"
+    ]
+  },
+  "jq-json-query-command-line.md": {
+    "name": "JQ json query command line tool",
+    "date": "24-07-2024",
+    "tags": [
+      "terminal",
+      "tool",
+      "json"
+    ]
+  },
+  "java-memory.md": {
+    "name": "Java Memory",
+    "date": "09-11-2024",
+    "tags": [
+      "java"
+    ]
+  },
+  "java.md": {
+    "name": "Java",
+    "date": "09-11-2024",
+    "tags": [
+      "language"
+    ]
+  },
+  "debug-bundle-install-stuck.md": {
+    "name": "Debug: Bundle install stuck",
+    "date": "25-08-2024",
+    "tags": [
+      "debug",
+      "ruby"
     ]
   }
 }
