@@ -581,19 +581,21 @@ export default function GalleryPage() {
               
               {/* Story on the right */}
               <div 
-                className="w-full md:flex-1 p-6 flex flex-col justify-center"
+                className="w-full md:flex-1 p-6 flex flex-col"
                 onClick={(e) => e.stopPropagation()}
                 style={{ 
                   paddingTop: windowWidth < 768 ? '20px' : '80px',
                   paddingRight: windowWidth < 768 ? '20px' : '80px',
-                  paddingLeft: windowWidth < 768 ? '20px' : '40px'
+                  paddingLeft: windowWidth < 768 ? '20px' : '40px',
+                  marginTop: windowWidth < 768 ? 'auto' : undefined,
+                  justifyContent: windowWidth < 768 ? 'flex-end' : 'center'
                 }}
               >
                 <div
-                  className="w-full flex items-center justify-center"
+                  className="w-full flex items-start justify-center"
                   style={{
-                    height: windowWidth < 768 ? 'auto' : '65%',
-                    maxHeight: windowWidth < 768 ? '25vh' : 'auto'
+                    height: windowWidth < 768 ? (storyMaxHeight ? `${storyMaxHeight}px` : 'auto') : '65%',
+                    maxHeight: windowWidth < 768 ? (storyMaxHeight ? `${storyMaxHeight}px` : 'auto') : 'auto'
                   }}
                 >
                   <div 
