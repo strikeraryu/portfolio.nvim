@@ -22,6 +22,7 @@ export default function GalleryPage() {
   const [windowWidth, setWindowWidth] = useState<number>(0);
   const [storyMaxHeight, setStoryMaxHeight] = useState<number | undefined>(undefined);
   const imageContainerRef = useRef<HTMLDivElement | null>(null);
+  const modalRef = useRef<HTMLDivElement | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isInitialLoading, setIsInitialLoading] = useState(true);
   const [hasMore, setHasMore] = useState(true);
@@ -302,35 +303,25 @@ export default function GalleryPage() {
   }, [selectedImage]);
 
   const handleWheel = useCallback((e: WheelEvent) => {
-    // Prevent background scrolling when modal is open
-    if (selectedImage) {
-      // Allow scrolling only if it's happening within the story scroll container
+    if (selectedImage && modalRef.current) {
       const target = e.target as HTMLElement;
-      const storyScrollContainer = document.querySelector('.story-scroll');
-      
-      if (storyScrollContainer && storyScrollContainer.contains(target)) {
-        // Allow scrolling within the story container
+      if (modalRef.current.contains(target)) {
+        // Allow scrolling inside the modal (image or story)
         return;
       }
-      
-      // Prevent scrolling everywhere else
+      // Prevent scrolling outside the modal
       e.preventDefault();
       e.stopPropagation();
     }
   }, [selectedImage]);
 
   const handleTouchMove = useCallback((e: TouchEvent) => {
-    // Prevent background scrolling when modal is open
-    if (selectedImage) {
+    if (selectedImage && modalRef.current) {
       const target = e.target as HTMLElement;
-      const storyScrollContainer = document.querySelector('.story-scroll');
-      
-      if (storyScrollContainer && storyScrollContainer.contains(target)) {
-        // Allow scrolling within the story container
+      if (modalRef.current.contains(target)) {
+        // Allow touch scrolling anywhere inside modal
         return;
       }
-      
-      // Prevent scrolling everywhere else
       e.preventDefault();
     }
   }, [selectedImage]);
@@ -511,6 +502,7 @@ export default function GalleryPage() {
         {/* Expanded Image Modal */}
         {selectedImage && (
           <div
+            ref={modalRef}
             className="fixed inset-0 flex items-center justify-center p-4"
             onClick={closeImage}
             style={{ 
