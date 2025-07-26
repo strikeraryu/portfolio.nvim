@@ -306,7 +306,8 @@ export default function GalleryPage() {
     if (selectedImage && modalRef.current) {
       const target = e.target as HTMLElement;
       if (modalRef.current.contains(target)) {
-        // Allow scrolling inside the modal (image or story)
+        // Allow scrolling inside modal but prevent bubbling to body
+        e.stopPropagation();
         return;
       }
       // Prevent scrolling outside the modal
@@ -319,7 +320,8 @@ export default function GalleryPage() {
     if (selectedImage && modalRef.current) {
       const target = e.target as HTMLElement;
       if (modalRef.current.contains(target)) {
-        // Allow touch scrolling anywhere inside modal
+        // Allow touch scrolling in modal but prevent bubbling
+        e.stopPropagation();
         return;
       }
       e.preventDefault();
@@ -341,12 +343,15 @@ export default function GalleryPage() {
   useEffect(() => {
     if (selectedImage) {
       document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'unset';
+      document.documentElement.style.overflow = 'unset';
     }
     
     return () => {
       document.body.style.overflow = 'unset';
+      document.documentElement.style.overflow = 'unset';
     };
   }, [selectedImage]);
 
@@ -513,14 +518,15 @@ export default function GalleryPage() {
               left: 0,
               width: '100vw',
               height: '100vh',
-              overflowY: windowWidth < 768 ? 'auto' : 'hidden'
+              overflowY: windowWidth < 768 ? 'auto' : 'hidden',
+              overscrollBehavior: 'contain'
             }}
           >
             <div className="relative w-full h-full flex flex-col md:flex-row">
               <button
                 onClick={closeImage}
                 style={{
-                  position: 'absolute',
+                  position: 'fixed',
                   top: '20px',
                   right: '20px',
                   zIndex: 10000,
