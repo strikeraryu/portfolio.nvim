@@ -579,33 +579,27 @@ export default function GalleryPage() {
                 />
               </div>
               
-              {/* Story on the right */}
+              {/* Story on the right / below */}
               <div 
-                className="w-full md:flex-1 p-6 flex flex-col"
+                className="w-full md:flex-1 p-6"
                 onClick={(e) => e.stopPropagation()}
                 style={{ 
-                  paddingTop: windowWidth < 768 ? '20px' : '80px',
-                  paddingRight: windowWidth < 768 ? '20px' : '80px',
-                  paddingLeft: windowWidth < 768 ? '20px' : '40px',
-                  marginTop: windowWidth < 768 ? 'auto' : undefined,
-                  justifyContent: windowWidth < 768 ? 'flex-end' : 'center'
+                  paddingTop: windowWidth < 768 ? '10px' : '80px',
+                  paddingRight: windowWidth < 768 ? '10px' : '80px',
+                  paddingLeft: windowWidth < 768 ? '10px' : '40px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  flex: windowWidth < 768 ? '1 1 0%' : undefined
                 }}
               >
-                <div
-                  className="w-full flex items-start justify-center"
+                <div 
+                  className="story-scroll flex-1 overflow-y-auto bg-opacity-60 rounded-lg p-8 relative"
                   style={{
-                    height: windowWidth < 768 ? (storyMaxHeight ? `${storyMaxHeight}px` : 'auto') : '65%',
-                    maxHeight: windowWidth < 768 ? (storyMaxHeight ? `${storyMaxHeight}px` : 'auto') : 'auto'
+                    scrollbarWidth: 'thin',
+                    scrollbarColor: 'rgba(255, 255, 255, 0.3) transparent',
+                    maxHeight: windowWidth < 768 ? 'none' : '65%'
                   }}
                 >
-                  <div 
-                    className="story-scroll w-full h-full overflow-y-auto bg-opacity-60 rounded-lg p-8 relative"
-                    style={{
-                      scrollbarWidth: 'thin',
-                      scrollbarColor: 'rgba(255, 255, 255, 0.3) transparent',
-                      maxHeight: windowWidth < 768 ? `${storyMaxHeight || 200}px` : 'none'
-                    }}
-                  >
                     <div 
                       className="text-sm leading-relaxed text-left"
                       style={{ 
@@ -630,7 +624,6 @@ export default function GalleryPage() {
                     )}
                   </div>
                 </div>
-              </div>
             </div>
           </div>
         )}
