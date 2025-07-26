@@ -19,7 +19,9 @@ export default function GalleryPage() {
   const [selectedImage, setSelectedImage] = useState<Photo | null>(null);
   const [stories, setStories] = useState<{ [key: string]: string }>({});
   const [displayedPhotos, setDisplayedPhotos] = useState<Photo[]>([]);
-  const [windowWidth, setWindowWidth] = useState(0);
+  const [windowWidth, setWindowWidth] = useState<number>(0);
+  const [storyMaxHeight, setStoryMaxHeight] = useState<number | undefined>(undefined);
+  const imageContainerRef = useRef<HTMLDivElement | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isInitialLoading, setIsInitialLoading] = useState(true);
   const [hasMore, setHasMore] = useState(true);
@@ -518,7 +520,8 @@ export default function GalleryPage() {
               top: 0,
               left: 0,
               width: '100vw',
-              height: '100vh'
+              height: '100vh',
+              overflowY: windowWidth < 768 ? 'auto' : 'hidden'
             }}
           >
             <div className="relative w-full h-full flex flex-col md:flex-row">
@@ -557,6 +560,7 @@ export default function GalleryPage() {
               
               {/* Image on the left */}
               <div 
+                ref={imageContainerRef}
                 className="w-full md:flex-1 flex items-center justify-center p-6"
                 onClick={(e) => e.stopPropagation()}
               >
@@ -564,6 +568,14 @@ export default function GalleryPage() {
                   src={`/api/content/gallery/${encodeURIComponent(selectedImage.filename)}`}
                   alt={selectedImage.filename}
                   className="max-w-full max-h-full object-contain"
+                  style={{ width: '100%', height: 'auto' }}
+                  onLoad={(e) => {
+                    if (windowWidth < 768) {
+                      const imgHeight = (e.currentTarget as HTMLImageElement).clientHeight;
+                      const computedMax = window.innerHeight - imgHeight - 120; // 120px for paddings/margins
+                      setStoryMaxHeight(computedMax > 100 ? computedMax : 100);
+                    }
+                  }}
                 />
               </div>
               
@@ -581,7 +593,7 @@ export default function GalleryPage() {
                   className="w-full flex items-center justify-center"
                   style={{
                     height: windowWidth < 768 ? 'auto' : '65%',
-                    maxHeight: windowWidth < 768 ? '60vh' : 'auto'
+                    maxHeight: windowWidth < 768 ? '25vh' : 'auto'
                   }}
                 >
                   <div 
@@ -589,7 +601,7 @@ export default function GalleryPage() {
                     style={{
                       scrollbarWidth: 'thin',
                       scrollbarColor: 'rgba(255, 255, 255, 0.3) transparent',
-                      maxHeight: windowWidth < 768 ? '60vh' : 'none'
+                      maxHeight: windowWidth < 768 ? `${storyMaxHeight || 200}px` : 'none'
                     }}
                   >
                     <div 
