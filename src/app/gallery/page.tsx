@@ -359,15 +359,6 @@ export default function GalleryPage() {
   useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
-      // recalc storyMaxHeight relative to image if modal open
-      if (selectedImage && imageContainerRef.current) {
-        const img = imageContainerRef.current.querySelector('img');
-        if (img) {
-          const imgHeight = (img as HTMLImageElement).clientHeight;
-          const computedMax = window.innerHeight - imgHeight - 140;
-          setStoryMaxHeight(computedMax > 120 ? computedMax : 120);
-        }
-      }
     };
 
     // Set initial width
@@ -577,9 +568,11 @@ export default function GalleryPage() {
                   className="max-w-full max-h-full object-contain"
                   style={{ width: '100%', height: 'auto' }}
                   onLoad={(e) => {
-                    const imgHeight = (e.currentTarget as HTMLImageElement).clientHeight;
-                    const computedMax = window.innerHeight - imgHeight - 140; // allow 140px for paddings/margins
-                    setStoryMaxHeight(computedMax > 120 ? computedMax : 120);
+                    if (windowWidth < 768) {
+                      const imgHeight = (e.currentTarget as HTMLImageElement).clientHeight;
+                      const computedMax = window.innerHeight - imgHeight - 120; // 120px for paddings/margins
+                      setStoryMaxHeight(computedMax > 100 ? computedMax : 100);
+                    }
                   }}
                 />
               </div>
@@ -602,7 +595,7 @@ export default function GalleryPage() {
                   style={{
                     scrollbarWidth: 'thin',
                     scrollbarColor: 'rgba(255, 255, 255, 0.3) transparent',
-                    maxHeight: storyMaxHeight ? `${storyMaxHeight}px` : (windowWidth < 768 ? 'none' : '65%')
+                    maxHeight: windowWidth < 768 ? 'none' : '65%'
                   }}
                 >
                     <div 
