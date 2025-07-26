@@ -1244,3 +1244,11 @@ html, body {
   cursor:default;
 }
 .tag-chip-sm{font-size:9px;padding:0.05rem 0.35rem;}
+
+/* Masonry gallery */
+.photo-masonry{column-count:4;column-gap:14px;}
+.photo-masonry-item{break-inside:avoid;margin-bottom:14px;cursor:pointer;}
+.photo-masonry-item img{width:100%;height:auto;border-radius:4px;display:block;}
+@media(max-width:1024px){.photo-masonry{column-count:3;}}
+@media(max-width:768px){.photo-masonry{column-count:2;}}
+@media(max-width:480px){.photo-masonry{column-count:1;}}

@@ -119,8 +119,6 @@ export default function GalleryPage() {
     loadingRef.current = false;
   }, [isLoading, hasMore, currentPage]);
 
-
-
   // Add scroll listener for infinite scroll
   useEffect(() => {
     const scrollHandler = () => {
@@ -213,8 +211,6 @@ export default function GalleryPage() {
   const closeImage = () => {
     setSelectedImage(null);
   };
-
-
 
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
     // Don't handle keyboard shortcuts when typing in inputs
@@ -361,8 +357,6 @@ export default function GalleryPage() {
     };
   }, [selectedImage]);
 
-
-
   // Handle window resize for responsive dimensions
   useEffect(() => {
     const handleResize = () => {
@@ -394,7 +388,7 @@ export default function GalleryPage() {
   return (
     <div>
       <PageHeader />
-    <div className="page-content">
+      <div className="page-content">
         <div className="max-w-7xl mx-auto">
           {/* Instruction Text */}
           <div className="text-left" style={{ 
@@ -409,7 +403,7 @@ export default function GalleryPage() {
             <div className="text-sm" style={{ color: 'var(--text-secondary)' }}>
               Click to <span style={{ color: 'var(--text-primary)' }}>Expand</span> and check <span style={{ color: 'var(--text-primary)' }}>Story</span> behind it
             </div>
-      </div>
+          </div>
 
           {/* Initial Loading */}
           {(isInitialLoading || !isMounted) ? (
@@ -449,79 +443,30 @@ export default function GalleryPage() {
               zIndex: 0,
               marginTop: '2rem'
             }}>
-              {displayedPhotos.map((photo) => {
-              const dimensions = getImageDimensions(photo);
-              const imageName = photo.filename.replace(/\.[^/.]+$/, "");
-              
-              return (
-            <div
-              key={photo.id}
-                  className="photo-item"
-                  style={{
-                    width: `${dimensions.width}px`,
-                    height: `${dimensions.height}px`,
-                    minWidth: `${dimensions.width}px`,
-                    minHeight: `${dimensions.height}px`,
-                  }}
-
-                  onClick={() => openImage(photo)}
-                >
-                  {/* Skeleton until loaded */}
-                  {!loadedIds.has(photo.id) && (
-                    <Skeleton height="100%" width="100%" className="absolute inset-0" />
-                  )}
-
-                  <img
-                    src={`/api/content/gallery/thumb?filename=${encodeURIComponent(photo.filename)}&w=${Math.round(dimensions.width)}`}
-                    alt={imageName}
-                    className="photo-image"
-                    loading="lazy"
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover',
-                      display: 'block',
-                      opacity: loadedIds.has(photo.id) ? 1 : 0,
-                      transition: 'opacity 0.3s ease'
-                    }}
-                    onLoad={() => setLoadedIds((prev) => new Set(prev).add(photo.id))}
-                    onError={(e) => {
-                      // Fallback if image fails to load
-                      const target = e.target as HTMLImageElement;
-                      target.style.display = 'none';
-                      const fallback = target.nextElementSibling as HTMLElement;
-                      if (fallback) {
-                        fallback.style.display = 'flex';
-                        fallback.classList.remove('hidden');
-                      }
-                    }}
-                  />
-                  {/* Fallback content - hidden by default */}
-                  <div className="photo-fallback hidden" style={{
-                    width: '100%',
-                    height: '100%',
-                    display: 'none',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    backgroundColor: 'var(--bg-secondary)',
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    zIndex: 1,
-                  }}>
-                <div className="text-center">
-                      <div className="text-2xl mb-2">📸</div>
-                      <div className="text-xs" style={{ color: 'var(--text-secondary)' }}>
-                    {photo.filename}
-                  </div>
+              <div className="photo-masonry" style={{ marginTop: '2rem' }}>
+                {displayedPhotos.map(photo => {
+                  const imageName = photo.filename.replace(/\.[^/.]+$/, "");
+                  return (
+                    <div
+                      key={photo.id}
+                      className="photo-masonry-item"
+                      onClick={() => openImage(photo)}
+                    >
+                      {!loadedIds.has(photo.id) && (
+                        <Skeleton height="150px" width="100%" />
+                      )}
+                      <img
+                        src={`/api/content/gallery/thumb?filename=${encodeURIComponent(photo.filename)}&w=800`}
+                        alt={imageName}
+                        loading="lazy"
+                        style={{ opacity: loadedIds.has(photo.id) ? 1 : 0, transition: 'opacity 0.3s ease' }}
+                        onLoad={() => setLoadedIds(prev => new Set(prev).add(photo.id))}
+                      />
                     </div>
-                  </div>
-
-
-                </div>
-              );
-                          })}
+                  );
+                })}
               </div>
+            </div>
           )}
 
           {/* Loading Indicator */}
@@ -533,7 +478,7 @@ export default function GalleryPage() {
             </div>
           )}
 
-                    {/* Load More Button (fallback if infinite scroll doesn't work) */}
+          {/* Load More Button (fallback if infinite scroll doesn't work) */}
           {!isLoading && !isInitialLoading && hasMore && (
             <div className="text-center mt-8">
               <button
@@ -543,29 +488,29 @@ export default function GalleryPage() {
               >
                 Load More Photos
               </button>
-        </div>
+            </div>
           )}
 
-        {/* Stats */}
+          {/* Stats */}
           {!isInitialLoading && (
-        <div className="mt-12 pt-8 border-t text-center" style={{ borderColor: 'var(--border-color)' }}>
-          <div className="flex justify-center space-x-8 text-sm">
-            <div className="flex items-center">
+            <div className="mt-12 pt-8 border-t text-center" style={{ borderColor: 'var(--border-color)' }}>
+              <div className="flex justify-center space-x-8 text-sm">
+                <div className="flex items-center">
                   <span style={{ color: 'var(--text-secondary)' }}>Showing:</span>
                   <span className="ml-2 px-2 py-1 bg-black rounded text-xs">
                     {displayedPhotos.length}
-              </span>
+                  </span>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
           )}
-      </div>
+        </div>
 
         {/* Expanded Image Modal */}
-      {selectedImage && (
-        <div
+        {selectedImage && (
+          <div
             className="fixed inset-0 flex items-center justify-center p-4"
-          onClick={closeImage}
+            onClick={closeImage}
             style={{ 
               zIndex: 9999,
               backgroundColor: 'rgba(0, 0, 0, 0.95)',
@@ -575,10 +520,10 @@ export default function GalleryPage() {
               width: '100vw',
               height: '100vh'
             }}
-        >
+          >
             <div className="relative w-full h-full flex flex-col md:flex-row">
-            <button
-              onClick={closeImage}
+              <button
+                onClick={closeImage}
                 style={{
                   position: 'absolute',
                   top: '20px',
@@ -606,9 +551,9 @@ export default function GalleryPage() {
                   e.currentTarget.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
                   e.currentTarget.style.transform = 'scale(1)';
                 }}
-            >
-              ✕
-            </button>
+              >
+                ✕
+              </button>
               
               {/* Image on the left */}
               <div 
@@ -669,16 +614,13 @@ export default function GalleryPage() {
                         ))}
                       </div>
                     )}
-
                   </div>
+                </div>
               </div>
-              </div>
-              
-
             </div>
           </div>
         )}
-        </div>
+      </div>
 
       <style jsx>{`
         .photo-grid {
@@ -705,7 +647,7 @@ export default function GalleryPage() {
           }
         }
         
-        .photo-item {
+        .photo-masonry-item {
           position: relative;
           cursor: pointer;
           transition: transform 0.3s ease;
@@ -714,23 +656,23 @@ export default function GalleryPage() {
           ${config.gallery.enableFloatAnimation ? 'animation: float 6s ease-in-out infinite;' : ''}
         }
         
-        .photo-item:hover {
+        .photo-masonry-item:hover {
           transform: translateY(-5px) scale(1.02);
         }
         
-        .photo-item:nth-child(2n) {
+        .photo-masonry-item:nth-child(2n) {
           animation-delay: -2s;
         }
         
-        .photo-item:nth-child(3n) {
+        .photo-masonry-item:nth-child(3n) {
           animation-delay: -4s;
         }
         
-        .photo-item:nth-child(4n) {
+        .photo-masonry-item:nth-child(4n) {
           animation-delay: -1s;
         }
         
-        .photo-item:nth-child(5n) {
+        .photo-masonry-item:nth-child(5n) {
           animation-delay: -3s;
         }
         
@@ -739,11 +681,9 @@ export default function GalleryPage() {
           transition: box-shadow 0.3s ease;
         }
         
-        .photo-item:hover .photo-image {
+        .photo-masonry-item:hover .photo-image {
           box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
         }
-        
-
         
         @keyframes float {
           0%, 100% { transform: translateY(0px); }
@@ -788,4 +728,4 @@ export default function GalleryPage() {
       `}</style>
     </div>
   );
-} 
+}
